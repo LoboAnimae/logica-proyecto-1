@@ -3,6 +3,7 @@ import decorations
 import random
 import boolmatr
 import warshallops
+import numpy as np
 
 
 def genarray():
@@ -27,7 +28,7 @@ def genarray():
         for i in range(0, m_size):
             for j in range(0, m_size):
                 usable_array[i][j] = 1 if random.randint(0, 3) == 1 else 0
-        decorations.loadingpercentage(0, 100)
+        # decorations.loadingpercentage(0, 100)
         print('\nArray created.')
     else:
         for i in range(0, m_size):
@@ -55,24 +56,27 @@ try:
     option = int(sys.argv[1])
     if option == 1:
         print('You will calculate using a Boolean Matrix')
-        array, vertices = genarray()
-        newarray = warshallops.warshall(array, vertices)
-        if array == newarray:
+        outarray, vertices = genarray()
+        newarray = boolmatr.boolmatrixprocedure(outarray, vertices)
+        print('Transitive Closure Array:')
+        print(newarray)
+    elif option == 2:
+        print('You will calculate using the Warshall algorithm')
+        outarray, vertices = genarray()
+        newarray = warshallops.warshall(outarray, vertices)
+        if outarray == newarray:
             print('Already on the lowest point')
 
         print('Transitive Closure Array:')
         for x in newarray:
             print(x)
-    elif option == 2:
-        print('You will calculate using the Warshall algorithm')
-        array, vertices = genarray()
 
     elif option == 3:
         print('Some information about the algorithms')
     else:
         exit(1)
 except Exception as e:
-    # print('\nTo run this program, you must input either 1, 2 or 3:')
-    # print('1. Calculate using a Boolean Matrix \n2. Calculate using the Warshall algorithm\n3. Some information about the algorithms\n')
+    print('\nTo run this program, you must input either 1, 2 or 3:')
+    print('1. Calculate using a Boolean Matrix \n2. Calculate using the Warshall algorithm\n3. Some information about the algorithms\n')
     print(e)
     exit(1)
