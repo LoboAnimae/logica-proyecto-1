@@ -2,9 +2,9 @@ import time
 import sys
 import random
 
-ERROR_COLOR = '\u001b[41;1m'
+ERROR_COLOR = '\u001b[43;1m'
 RESET_COLOR = '\u001b[0m'
-SUCCESS_COLOR = '\u001b[43;1m'
+SUCCESS_COLOR = '\u001b[41;1m'
 
 
 def loadingpercentage(initnum: int, endnum: int):
@@ -22,7 +22,7 @@ def loadingpercentage(initnum: int, endnum: int):
             stri += '|'
             j += 1
         sys.stdout.write(u"\u001b[1000D" + str(i+1) + "%" + str(stri))
-        if i%20 == random.randint(0, 20):
+        if i % 100 == random.randint(0, 100):
             time.sleep(random.randint(0, 2))
         sys.stdout.flush()
 

@@ -7,11 +7,15 @@ import numpy as np
 
 
 def genarray():
+    """Generates an array of random 1's and 0's or chosen by the user
+
+    Returns:
+        Bool-Type array: An array
+    """    
     print('\nPlease input the size of the matrix you want to work with.\n\n')
     m_size, m_size = 2, 2
     try:
         m_size = int(input('Please input how many vertices there are: '))
-
     except:
         pass
 
@@ -28,7 +32,7 @@ def genarray():
         for i in range(0, m_size):
             for j in range(0, m_size):
                 usable_array[i][j] = 1 if random.randint(0, 3) == 1 else 0
-        # decorations.loadingpercentage(0, 100)
+        decorations.loadingpercentage(0, 100)
         print('\nArray created.')
     else:
         for i in range(0, m_size):
@@ -46,11 +50,6 @@ def genarray():
     for x in usable_array:
         print(x)
     return usable_array, m_size
-
-
-def warshall():
-    pass
-
 
 try:
     option = int(sys.argv[1])
@@ -70,13 +69,11 @@ try:
         print('Transitive Closure Array:')
         for x in newarray:
             print(x)
-
-    elif option == 3:
-        print('Some information about the algorithms')
     else:
         exit(1)
+        
+    print('Program finished!')
 except Exception as e:
     print('\nTo run this program, you must input either 1, 2 or 3:')
-    print('1. Calculate using a Boolean Matrix \n2. Calculate using the Warshall algorithm\n3. Some information about the algorithms\n')
-    print(e)
+    print('1. Calculate using a Boolean Matrix \n2. Calculate using the Warshall algorithm\n')
     exit(1)
